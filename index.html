@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khet Khalihaan - Organic Farm Produce from Bihar</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+
+    <!-- Embedded CSS -->
+    <style>
+        /* ------------------------- */
+        /* --- 1. Root & Globals --- */
+        /* ------------------------- */
+        :root {
+            /* Colors */
+            --green-dark: #2D5016;
+            --green-medium: #4A7C2F;
+            --green-light: #8FBC8F;
+            --golden-dark: #DAA520;
+            --golden-light: #FFD700;
+            --brown-dark: #8B4513;
+            --bg-cream: #FFFEF7;
+            --bg-beige: #F5F5DC;
+            --text-dark: #333;
+            --text-light: #FFFEF7;
+
+            /* Fonts */
+            --font-header: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            --font-price: 'Roboto Mono', monospace;
+
+            /* Transitions & Shadows */
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background-color: var(--bg-cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-header);
+            color: var(--green-dark);
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 3rem; line-height: 1.2; }
+        h2 { font-size: 2.25rem; }
+        h3 { font-size: 1.5rem; }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            color: var(--green-medium);
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        a:hover {
+            color: var(--green-dark);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.75rem;
+            background-color: var(--green-medium);
+            color: var(--text-light);
+            font-family: var(--font-header);
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-light);
+        }
+
+        .btn:hover {
+            background-color: var(--green-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-secondary {
+            background-color: var(--golden-dark);
+        }
+        .btn-secondary:hover {
+            background-color: #b8860b; /* Darker gold */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* ------------------------- */
+        /* --- 2. Header & Nav ----- */
+        /* ------------------------- */
+        .main-header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 254, 247, 0.95); /* Removed expensive backdrop-filter */
+            /* backdrop-filter: blur(10px); */
+            /* -webkit-backdrop-filter: blur(10px); */
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Targeted transition */
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        }
+
+        .main-header.scrolled {
+            background-color: var(--bg-cream);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-header);
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--green-dark);
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--golden-dark);
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .main-nav a {
+            font-family: var(--font-header);
+            font-weight: 700;
+            color: var(--green-dark);
+            cursor: pointer;
+            padding: 0.5rem;
+            position: relative;
+        }
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--golden-dark);
+            transition: var(--transition-smooth);
+        }
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
+            width: 80%;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--green-dark);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background-color: var(--golden-dark);
+            color: var(--text-dark);
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            font-family: var(--font-body);
+        }
+        
+        .menu-toggle {
+            display: none; /* Hidden on desktop */
+            font-size: 2rem;
+            color: var(--green-dark);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ------------------------- */
+        /* --- 3. Home Page -------- */
+        /* ------------------------- */
+
+        /* Hero Section */
+        #hero {
+            height: 90vh;
+            min-height: 500px;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(45, 80, 22, 0.4), rgba(45, 80, 22, 0.2)), 
+                        url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNjUyOXwwfDF8c2VhcmNofDEwfHx3aGVhdCUyMGZpZWxkJTIwc3Vuc2V0fGVufDB8fHx8MTcwODY5MjYxN3ww&ixlib=rb-4.0.3&q=80&w=1920') no-repeat center center/cover;
+            color: var(--text-light);
+            padding: 0 1.5rem;
+        }
+
+        .hero-content h1 {
+            color: var(--text-light);
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            margin-bottom: 1.5rem;
+        }
+        .hero-content .btn {
+            margin-top: 1rem;
+        }
+
+        /* About Section */
+        #about {
+            background: var(--bg-beige);
+        }
+        #about .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+        }
+        .about-content, .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        .about-image img {
+            border-radius: 10px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* Trust Indicators */
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        .trust-item {
+            padding: 1.5rem;
+        }
+        .trust-item .icon {
+            font-size: 3rem;
+            color: var(--green-medium);
+            margin-bottom: 1rem;
+        }
+        .trust-item h4 {
+            font-family: var(--font-header);
+            font-size: 1.1rem;
+            color: var(--green-dark);
+        }
+
+        /* --- Animations --- */
+        
+        /* 1. Page transition animation */
+        .page-section.fade-in-page {
+            /* This class is added temporarily by JS */
+            animation: fadeInPage 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 2. Scroll-in animation */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition-delay: var(--delay, 0s); /* Allow for staggered animations */
+        }
+        
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Specific slide-in for about section */
+        #about .about-image.animate-on-scroll {
+            transform: translateX(-30px);
+        }
+        #about .about-content.animate-on-scroll {
+            transform: translateX(30px);
+        }
+        #about .animate-on-scroll.is-visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        /* 3. Hover animations */
+        .specialty-item, .trust-item {
+            transition: var(--transition-smooth);
+        }
+        .specialty-item:hover, .trust-item:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-medium);
+            border-radius: 10px;
+        }
+        
+        /* Specialty Section */
+        #specialty {
+            background-color: var(--bg-cream); 
+        }
+        .specialty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        .specialty-item {
+            padding: 1.5rem;
+        }
+        .specialty-item .icon {
+            font-size: 3rem;
+            color: var(--golden-dark); /* Use the gold color to differentiate */
+            margin-bottom: 1rem;
+        }
+        .specialty-item h4 {
+            font-family: var(--font-header);
+            font-size: 1.1rem;
+            color: var(--green-dark);
+            margin-bottom: 0.5rem; /* Added margin for the <p> tag */
+        }
+        .specialty-item p {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            margin-bottom: 0; /* Override default p margin */
+        }
+
+        /* ------------------------- */
+        /* --- 4. Products Page ---- */
+        /* ------------------------- */
+        #page-products {
+            background-color: var(--bg-beige);
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--bg-cream);
+            border-radius: 10px;
+            box-shadow: var(--shadow-light);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Optimized transition */
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .product-image {
+            height: 250px;
+            background-color: #eee;
+            overflow: hidden; /* Ensure image corners are rounded if card is */
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* This ensures the image covers the area, cropping as needed */
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover .product-image img {
+            transform: scale(1.05); /* Add a slight zoom on hover */
+        }
+        
+        /* Specific image placeholders REMOVED */
+
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .product-price {
+            font-family: var(--font-price);
+            font-size: 1.3rem;
+            color: var(--green-dark);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .product-actions {
+            margin-top: auto; /* Pushes to bottom */
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .product-actions label {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .product-actions select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: var(--font-body);
+        }
+        .product-actions .btn {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        /* ----------------------------- */
+        /* --- 4b. Cart & Checkout ----- */
+        /* ----------------------------- */
+        #page-cart, #page-checkout {
+            min-height: 70vh;
+            background-color: var(--bg-beige);
+        }
+
+        .cart-item-container {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            background: var(--bg-cream);
+            border-radius: 8px;
+            box-shadow: var(--shadow-light);
+            padding: 1rem;
+        }
+
+        .cart-empty-message {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #777;
+            padding: 3rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .cart-item-details strong {
+            font-size: 1.1rem;
+            color: var(--green-dark);
+        }
+        .cart-item-details span {
+            font-size: 0.9rem;
+            color: #555;
+            margin-left: 0.5rem;
+        }
+        .cart-item-price {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: var(--font-price);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: #cc0000;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .cart-item-remove:hover {
+            transform: scale(1.2);
+            color: #ff0000;
+        }
+
+        .cart-summary {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: right;
+            padding: 1.5rem;
+        }
+        .cart-total {
+            font-size: 1.8rem;
+            font-family: var(--font-header);
+            color: var(--green-dark);
+            margin-bottom: 1.5rem;
+        }
+        .cart-total span {
+            font-family: var(--font-price);
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        .checkout-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        /* Checkout Form */
+        #checkout-form {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--bg-cream);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-light);
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .form-group-full {
+                grid-column: 1 / -1;
+            }
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--green-dark);
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--green-medium);
+            box-shadow: 0 0 5px rgba(74, 124, 47, 0.3);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .form-actions {
+            grid-column: 1 / -1;
+            text-align: right;
+            margin-top: 1rem;
+        }
+        .form-actions .btn {
+            font-size: 1.1rem;
+        }
+
+        /* ------------------------- */
+        /* --- 5. Footer ----------- */
+        /* ------------------------- */
+        .main-footer {
+            background-color: var(--green-dark);
+            color: var(--bg-beige);
+            padding: 4rem 0 2rem;
+            margin-top: 3rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .footer-grid h4 {
+            color: var(--golden-light);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        .footer-grid ul {
+            list-style: none;
+        }
+        .footer-grid li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-grid a {
+            color: var(--bg-beige);
+            transition: var(--transition-smooth);
+        }
+        .footer-grid a:hover {
+            color: var(--golden-light);
+            /* padding-left: 5px; */ /* Replaced by transform */
+            transform: translateX(5px);
+        }
+        .social-links a {
+            /* font-size: 1.5rem; */
+            /* margin-right: 1rem; */
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem; /* Space between icon and text */
+            font-size: 1rem; /* Font size for the text */
+            font-weight: 600;
+        }
+        .social-links a:hover {
+            transform: translateX(0); /* Disable shift on this specific link */
+        }
+        .social-links a svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--bg-beige);
+            transition: var(--transition-smooth);
+        }
+        .social-links a:hover svg {
+            fill: var(--golden-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--green-medium);
+            font-size: 0.9rem;
+        }
+
+        /* ------------------------- */
+        /* --- 6. Toast Notify ----- */
+        /* ------------------------- */
+        #toast {
+            position: fixed;
+            bottom: -100px; /* Start off-screen */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--green-dark);
+            color: var(--text-light);
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            box-shadow: var(--shadow-medium);
+            font-weight: 600;
+            transition: bottom 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            z-index: 2000;
+        }
+        #toast.show {
+            bottom: 30px; /* Slide in */
+        }
+
+        /* ------------------------- */
+        /* --- 7. Responsive ------- */
+        /* ------------------------- */
+        @media (max-width: 900px) {
+            .hero-content h1 {
+                font-size: 2.75rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* --- Responsive Layout & Spacing --- */
+            section {
+                padding: 3.5rem 0; /* Reduced vertical padding for mobile */
+            }
+
+            .container {
+                padding: 0 1rem; /* Slightly reduce container padding */
+            }
+
+            /* --- Header & Nav --- */
+            .menu-toggle {
+                display: block;
+            }
+            .nav-right {
+                gap: 1rem;
+            }
+
+            .main-nav {
+                display: none; /* Hidden by default on mobile */
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-cream);
+                box-shadow: var(--shadow-medium);
+            }
+            .main-nav.active {
+                display: block;
+            }
+            .main-nav ul {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 0;
+            }
+            .main-nav li {
+                width: 100%;
+            }
+            .main-nav a {
+                display: block;
+                padding: 1rem;
+                text-align: center;
+            }
+            .main-nav a::after {
+                display: none;
+            }
+            .main-nav a:hover,
+            .main-nav a.active {
+                background: var(--bg-beige);
+            }
+
+            /* --- Typography --- */
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+
+            /* --- Cart Page --- */
+            .cart-item {
+                flex-direction: column; /* Stack item details and price */
+                align-items: flex-start; /* Align to the start */
+                gap: 0.75rem;
+            }
+            .cart-item-price {
+                width: 100%; /* Make price section full width */
+                justify-content: space-between; /* Space out price and remove button */
+            }
+            .cart-item-remove {
+                /* Increase tap target size */
+                padding: 0.5rem;
+                margin-right: -0.5rem; /* Offset padding */
+            }
+
+            /* --- Checkout Page --- */
+            #checkout-form {
+                padding: 2rem 1.5rem; /* Reduce form padding on mobile */
+            }
+
+            /* --- Footer --- */
+            .footer-grid {
+                gap: 2.5rem; /* Give a bit more space when stacked */
+            }
+        }
+
+        /* Added for very small screens */
+        @media (max-width: 480px) {
+            h1, .hero-content h1 {
+                font-size: 2.2rem; /* Further reduce main heading size */
+            }
+            h2 {
+                font-size: 1.75rem;
+            }
+            h3 {
+                font-size: 1.3rem;
+            }
+
+            .btn {
+                padding: 0.75rem 1.25rem; /* Reduce button padding slightly */
+                font-size: 0.9rem;
+            }
+
+            .product-grid {
+                /* Center single-column grid on small screens */
+                grid-template-columns: minmax(0, 300px);
+                justify-content: center;
+            }
+        }
+
+        /* ------------------------- */
+        /* --- 8. Modal ------------ */
+        /* ------------------------- */
+        /* MODAL REMOVED */
+    </style>
+</head>
+<body>
+
+    <!-- ======================= -->
+    <!-- ====== HEADER ========= -->
+    <!-- ======================= -->
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <a href="#" class="logo" data-page="page-home">Khet Khalihaan<span>.</span></a>
+            
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="#" class="nav-link active" data-page="page-home">Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="page-products">Products</a></li>
+                    <li><a href="#" class="nav-link" data-page="page-cart">Cart</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-right">
+                <div class="cart-icon" id="cart-icon" data-page="page-cart" title="View Cart">
+                    <!-- SVG Cart Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </div>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+                    &#9776; <!-- Hamburger Icon -->
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ======================= -->
+    <!-- ====== MAIN CONTENT === -->
+    <!-- ======================= -->
+    <main>
+
+        <!-- ======================= -->
+        <!-- ====== PAGE: HOME ===== -->
+        <!-- ======================= -->
+        <div id="page-home" class="page-section">
+            
+            <!-- Hero Section -->
+            <section id="hero">
+                <div class="hero-content">
+                    <h1 class="animate-on-scroll">From Our Fields to Your Family</h1>
+                    <p style="font-size: 1.2rem; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); --delay: 0.1s;" class="animate-on-scroll">Authentic organic produce, direct from Bihar.</p>
+                    <a href="#" class="btn btn-secondary nav-link animate-on-scroll" data-page="page-products" style="--delay: 0.2s;">Explore Farm Fresh Products</a>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about">
+                <div class="container">
+                    <div class="about-image animate-on-scroll">
+                        <img src="https://i.ibb.co/tMpP2Nm5/b362ce46-4daa-43f7-a759-d0b87b1030ae.jpg" alt="Khet Khalihaan farm produce" loading="lazy">
+                    </div>
+                    <div class="about-content animate-on-scroll" style="--delay: 0.1s;">
+                        <h3 style="color: var(--golden-dark); font-weight: 700;">OUR PHILOSOPHY</h3>
+                        <h2>Welcome to Khet Khalihaan</h2>
+                        <p>Khet Khalihaan Farms is built on fairness and quality. Born from the desire to give fair returns to farmers, we process and sell small-batch harvest directly to you. Every purchase guarantees not only fresh produce, but a fair price for local cultivators.</p>
+                        <p style="font-weight: 600; color: var(--green-dark);">Small-batch, community-processed, and directly sold harvest.</p>
+                        <p style="font-weight: 600; color: var(--green-dark);">Buying ensures fair prices for local farmers.</p>
+                        <p style="font-weight: 600; color: var(--green-dark);">Our brand exists to empower rural families and promote authentic, pure food.</p>
+                        <a href="#" class="btn nav-link" data-page="page-products">See Our Products</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Specialty Section -->
+            <section id="specialty">
+                <div class="container">
+                    <h2 style="text-align: center; margin-bottom: 3rem;">Our Specialty: Stone Ground Pulses & Spices</h2>
+                    <div class="specialty-grid">
+                        <div class="specialty-item animate-on-scroll" style="--delay: 0s;">
+                            <div class="icon">🌿</div>
+                            <h4>Nutrient Preservation</h4>
+                            <p>Low heat from stone grinding preserves essential nutrients and natural enzymes.</p>
+                        </div>
+                        <div class="specialty-item animate-on-scroll" style="--delay: 0.1s;">
+                            <div class="icon">🌾</div>
+                            <h4>Whole Grain Goodness</h4>
+                            <p>Whole grain goodness is retained, keeping all beneficial bran and germ.</p>
+                        </div>
+                        <div class="specialty-item animate-on-scroll" style="--delay: 0.2s;">
+                            <div class="icon">😋</div>
+                            <h4>Superior Flavor</h4>
+                            <p>Natural oils are preserved, giving a richer, nuttier, and more authentic taste.</p>
+                        </div>
+                        <div class="specialty-item animate-on-scroll" style="--delay: 0.3s;">
+                            <div class="icon">💚</div>
+                            <h4>Healthier Digestion</h4>
+                            <p>Higher natural fiber content leads to slower digestion and a lower glycemic index.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trust Indicators -->
+            <section id="trust">
+                <div class="container">
+                    <h2 style="text-align: center; margin-bottom: 3rem;">Why Choose Us?</h2>
+                    <div class="trust-grid">
+                        <div class="trust-item animate-on-scroll" style="--delay: 0s;">
+                            <div class="icon">🌱</div>
+                            <h4>100% Organic</h4>
+                        </div>
+                        <div class="trust-item animate-on-scroll" style="--delay: 0.1s;">
+                            <div class="icon">🚜</div>
+                            <h4>Direct from Farm</h4>
+                        </div>
+                        <div class="trust-item animate-on-scroll" style="--delay: 0.2s;">
+                            <div class="icon">📦</div>
+                            <h4>All India Delivery</h4>
+                        </div>
+                        <div class="trust-item animate-on-scroll" style="--delay: 0.3s;">
+                            <div class="icon">🌾</div>
+                            <h4>Stone Ground Fresh</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div> <!-- End Page: Home -->
+
+
+        <!-- ======================= -->
+        <!-- ==== PAGE: PRODUCTS === -->
+        <!-- ======================= -->
+        <div id="page-products" class="page-section hidden">
+            <section id="products">
+                <div class="container">
+                    <h2 style="text-align: center; margin-bottom: 3rem;">Our Farm Fresh Products</h2>
+                    
+                    <!-- Product Grid -->
+                    <div class="product-grid" id="product-grid">
+
+                        <!-- Product: Haldi -->
+                        <div class="product-card" data-id="1" data-name="Haldi (Turmeric Powder)" data-price="40">
+                            <div class="product-image">
+                                <img src="https://i.ibb.co/6cZczVS4/64b3ef54-03d1-4dcb-bef2-3896062c63f4.jpg" alt="Haldi (Turmeric Powder)" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3>Haldi (Turmeric Powder)</h3>
+                                <span class="product-price">Rs. 40 / 100 grams</span>
+                                <div class="product-actions">
+                                    <label for="qty-1">Quantity:</label>
+                                    <select id="qty-1" class="product-quantity">
+                                        <option value="100g">100 grams - Rs. 40</option>
+                                        <option value="250g">250 grams - Rs. 100</option>
+                                        <option value="500g">500 grams - Rs. 200</option>
+                                    </select>
+                                    <button class="btn add-to-order">Add to Order</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product: Coriander -->
+                        <div class="product-card" data-id="2" data-name="Coriander Powder" data-price="35">
+                            <div class="product-image">
+                                <img src="https://i.ibb.co/pB9Ft3mN/60228830-ddb8-427c-b025-8529165e2118.jpg" alt="Coriander Powder" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3>Coriander Powder</h3>
+                                <span class="product-price">Rs. 35 / 100 grams</span>
+                                <div class="product-actions">
+                                    <label for="qty-2">Quantity:</label>
+                                    <select id="qty-2" class="product-quantity">
+                                        <option value="100g">100 grams - Rs. 35</option>
+                                        <option value="250g">250 grams - Rs. 85</option>
+                                        <option value="500g">500 grams - Rs. 170</option>
+                                    </select>
+                                    <button class="btn add-to-order">Add to Order</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product: Besan -->
+                        <div class="product-card" data-id="3" data-name="Chana Besan (Gram Flour)" data-price="100">
+                            <div class="product-image">
+                                <img src="https://i.ibb.co/9Hyh2bzx/98c4d3c3-a813-4365-b2c5-f0dd0b20194f.jpg" alt="Chana Besan (Gram Flour)" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3>Chana Besan (Gram Flour)</h3>
+                                <span class="product-price">Rs. 100 / 500 grams</span>
+                                <div class="product-actions">
+                                    <label for="qty-3">Quantity:</label>
+                                    <select id="qty-3" class="product-quantity">
+                                        <option value="500g">500 grams - Rs. 100</option>
+                                        <option value="1kg">1 kg - Rs. 200</option>
+                                    </select>
+                                    <button class="btn add-to-order">Add to Order</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product: Sattu -->
+                        <div class="product-card" data-id="4" data-name="Multi Grain Sattu" data-price="150">
+                            <div class="product-image">
+                                <img src="https://i.ibb.co/prKJGghq/578c0b08-6195-4e07-921d-2912f3d47487.jpg" alt="Multi Grain Sattu" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3>Multi Grain Sattu</h3>
+                                <span class="product-price">Rs. 150 / 500 grams</span>
+                                <div class="product-actions">
+                                    <label for="qty-4">Quantity:</label>
+                                    <select id="qty-4" class="product-quantity">
+                                        <option value="500g">500 grams - Rs. 150</option>
+                                        <option value="1kg">1 kg - Rs. 300</option>
+                                    </select>
+                                    <button class="btn add-to-order">Add to Order</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product: Moong Dal -->
+                        <div class="product-card" data-id="5" data-name="Moong Dal" data-price="210">
+                            <div class="product-image">
+                                <img src="https://i.ibb.co/rGrn8R3c/a639fdf4-2974-47c8-9171-9c18bd5a4daf.png" alt="Moong Dal" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3>Moong Dal</h3>
+                                <span class="product-price">Rs. 210 / Kg</span>
+                                <div class="product-actions">
+                                    <label for="qty-5">Quantity:</label>
+                                    <select id="qty-5" class="product-quantity">
+                                        <option value="500g">500 grams - Rs. 105</option>
+                                        <option value="1kg">1 kg - Rs. 210</option>
+                                    </select>
+                                    <button class="btn add-to-order">Add to Order</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product: Arhar Dal -->
+                        <div class="product-card" data-id="6" data-name="Arhar Dal (Toor Dal)" data-price="280">
+                            <div class="product-image">
+                                <img src="https://i.ibb.co/m54pDHnS/dc45c0b1-1b7b-4744-a621-5f6a4b10bb05.jpg" alt="Arhar Dal (Toor Dal)" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3>Arhar Dal (Toor Dal)</h3>
+                                <span class="product-price">Rs. 280 / Kg</span>
+                                <div class="product-actions">
+                                    <label for="qty-6">Quantity:</label>
+                                    <select id="qty-6" class="product-quantity">
+                                        <option value="500g">500 grams - Rs. 140</option>
+                                        <option value="1kg">1 kg - Rs. 280</option>
+                                    </select>
+                                    <button class="btn add-to-order">Add to Order</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product: Chana Dal -->
+                        <div class="product-card" data-id="7" data-name="Chana Dal" data-price="200">
+                            <div class="product-image">
+                                <img src="https://i.ibb.co/PZ9pP0zZ/8d94c0c7-ae6b-4006-8a94-eb6431207a48.jpg" alt="Chana Dal" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3>Chana Dal</h3>
+                                <span class="product-price">Rs. 200 / Kg</span>
+                                <div class="product-actions">
+                                    <label for="qty-7">Quantity:</label>
+                                    <select id="qty-7" class="product-quantity">
+                                        <option value="500g">500 grams - Rs. 100</option>
+                                        <option value="1kg">1 kg - Rs. 200</option>
+                                    </select>
+                                    <button class="btn add-to-order">Add to Order</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product: Masoor Dal -->
+                        <div class="product-card" data-id="8" data-name="Masoor Dal" data-price="200">
+                            <div class="product-image">
+                                <img src="https://i.ibb.co/Wvb4w2DM/d0aa6aed-fa81-4e23-ae09-29886b8b3028.jpg" alt="Masoor Dal" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <h3>Masoor Dal</h3>
+                                <span class="product-price">Rs. 200 / Kg</span>
+                                <div class="product-actions">
+                                    <label for="qty-8">Quantity:</label>
+                                    <select id="qty-8" class="product-quantity">
+                                        <option value="500g">500 grams - Rs. 100</option>
+                                        <option value="1kg">1 kg - Rs. 200</option>
+                                    </select>
+                                    <button class="btn add-to-order">Add to Order</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> <!-- End Product Grid -->
+                </div>
+            </section>
+        </div> <!-- End Page: Products -->
+
+
+        <!-- ======================= -->
+        <!-- ===== PAGE: CART ====== -->
+        <!-- ======================= -->
+        <div id="page-cart" class="page-section hidden">
+            <section id="cart">
+                <div class="container">
+                    <h2 style="text-align: center; margin-bottom: 3rem;">Your Order Summary</h2>
+                    
+                    <div class="cart-item-container" id="cart-items-container">
+                        <!-- Cart items will be dynamically injected here by JS -->
+                        <div class="cart-empty-message">Your cart is currently empty.</div>
+                    </div>
+
+                    <div class="cart-summary">
+                        <h3 class="cart-total" id="cart-total-summary">
+                            Grand Total: <span>Rs. 0</span>
+                        </h3>
+                        <div class="checkout-actions">
+                            <a href="#" class="nav-link" data-page="page-products" style="font-weight: 600;">&larr; Continue Shopping</a>
+                            <button class="btn btn-secondary" id="proceed-to-checkout-btn">Proceed to Checkout &rarr;</button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div> <!-- End Page: Cart -->
+
+
+        <!-- ======================= -->
+        <!-- === PAGE: CHECKOUT ==== -->
+        <!-- ======================= -->
+        <div id="page-checkout" class="page-section hidden">
+            <section id="checkout">
+                <div class="container">
+                    <h2 style="text-align: center; margin-bottom: 1rem;">Delivery Details</h2>
+                    <p style="text-align: center; max-width: 600px; margin: 0 auto 3rem; color: #555;">
+                        Please fill out your details below. You will be redirected to WhatsApp to confirm your order.
+                    </p>
+
+                    <form id="checkout-form">
+                        <div class="form-grid">
+                            <!-- Full Name -->
+                            <div class="form-group form-group-full">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="fullName" required>
+                            </div>
+                            
+                            <!-- Mobile Number -->
+                            <div class="form-group">
+                                <label for="mobile">Mobile Number (10-digit)</label>
+                                <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number.">
+                            </div>
+
+                            <!-- Pin Code -->
+                            <div class="form-group">
+                                <label for="pinCode">Pin Code (6-digit)</label>
+                                <input type="tel" id="pinCode" name="pinCode" required pattern="[0-9]{6}" title="Please enter a valid 6-digit pin code.">
+                            </div>
+
+                            <!-- Delivery Address -->
+                            <div class="form-group form-group-full">
+                                <label for="address">Complete Delivery Address</label>
+                                <textarea id="address" name="address" rows="4" required></textarea>
+                            </div>
+
+                            <!-- Alternate Contact -->
+                            <div class="form-group">
+                                <label for="altContact">Alternate Contact (Optional)</label>
+                                <input type="tel" id="altContact" name="altContact" pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number.">
+                            </div>
+
+                            <!-- Special Instructions -->
+                            <div class="form-group">
+                                <label for="instructions">Special Instructions (Optional)</label>
+                                <input type="text" id="instructions" name="instructions">
+                            </div>
+
+                            <!-- Form Actions -->
+                            <div class="form-actions">
+                                <button type="submit" class="btn">Submit & Order on WhatsApp</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </section>
+        </div> <!-- End Page: Checkout -->
+
+
+    </main>
+
+    <!-- ======================= -->
+    <!-- ====== FOOTER ========= -->
+    <!-- ======================= -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4>Khet Khalihaan</h4>
+                    <p>Taste the tradition. Pure, stone-ground goodness from our fields to your family.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#" class="nav-link" data-page="page-home">Home</a></li>
+                        <li><a href="#" class="nav-link" data-page="page-products">Products</a></li>
+                        <li><a href="#">Contact (Coming Soon)</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/khalihan00/" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
+                            <!-- Instagram SVG Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.272.058 2.166.29 2.913.585.786.305 1.456.718 2.122 1.385.666.666 1.08 1.336 1.385 2.122.295.747.527 1.64.585 2.913.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.058 1.272-.29 2.166-.585 2.913-.305.786-.718 1.456-1.385 2.122-.666.666-1.336 1.08-2.122 1.385-.747.295-1.64.527-2.913.585-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.272-.058-2.166-.29-2.913-.585-.786-.305-1.456-.718-2.122-1.385-.666-.666-1.08-1.336-1.385-2.122-.295-.747-.527-1.64-.585-2.913-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.058-1.272.29-2.166.585-2.913.305-.786.718-1.456 1.385-2.122.666-.666 1.336-1.08 2.122-1.385.747-.295 1.64-.527 2.913-.585C8.416 2.175 8.796 2.163 12 2.163m0-2.163C8.74 0 8.333.012 7.053.072 5.775.132 4.905.333 4.14.63c-.784.305-1.457.718-2.123 1.385C1.35 2.68 1.036 3.353.73 4.14.43 4.905.23 5.775.17 7.053.01 8.333 0 8.74 0 12s.01 3.667.072 4.947c.06 1.277.26 2.148.558 2.913.306.784.718 1.457 1.385 2.123.666.666 1.336 1.036 2.123 1.385.765.297 1.636.498 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.012 4.947-.072c1.277-.06 2.148-.26 2.913-.558.784-.306 1.457-.718 2.123-1.385.666-.666 1.036-1.336 1.385-2.123.297-.765.498-1.636.558-2.913C23.988 15.667 24 15.26 24 12s-.012-3.667-.072-4.947c-.06-1.277-.26-2.148-.558-2.913-.306-.784-.718-1.457-1.385-2.123C21.32.73 20.647.416 19.86.11c-.765-.297-1.636-.498-2.913-.558C15.667.012 15.26 0 12 0z"/>
+                                <path d="M12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/>
+                                <circle cx="18.402" cy="5.598" r="1.44"/>
+                            </svg>
+                            <span>Follow us on Instagram</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Contact Us</h4>
+                    <p>Phone: +91 94703 83407</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Khet Khalihaan - All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ======================= -->
+    <!-- ====== TOAST NOTIFY === -->
+    <!-- ======================= -->
+    <div id="toast">Item added to order!</div>
+
+
+    <!-- ======================= -->
+    <!-- ====== MODAL =========== -->
+    <!-- ======================= -->
+    <!-- MODAL REMOVED -->
+
+
+    <!-- ======================= -->
+    <!-- ====== JAVASCRIPT ===== -->
+    <!-- ======================= -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Elements ---
+            const header = document.getElementById('main-header');
+            const nav = document.getElementById('main-nav');
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pageSections = document.querySelectorAll('.page-section');
+            const productGrid = document.getElementById('product-grid');
+            const cartBadge = document.getElementById('cart-badge');
+            const toast = document.getElementById('toast');
+            const cartIcon = document.getElementById('cart-icon');
+
+            // New elements for Cart & Checkout
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const cartTotalSummary = document.getElementById('cart-total-summary');
+            const proceedToCheckoutBtn = document.getElementById('proceed-to-checkout-btn');
+            const checkoutForm = document.getElementById('checkout-form');
+            /* MODAL ELEMENTS REMOVED */
+
+
+            // --- State ---
+            let cart = JSON.parse(localStorage.getItem('khetKhalihaanCart')) || [];
+            let toastTimer;
+
+            // --- Debounce Function ---
+            // Returns a function, that, as long as it continues to be invoked, will not
+            // be triggered. The function will be called after it stops being called for
+            // N milliseconds.
+            function debounce(func, wait = 15) {
+                let timeout;
+                return function(...args) {
+                    const context = this;
+                    clearTimeout(timeout);
+                    timeout = setTimeout(() => func.apply(context, args), wait);
+                };
+            }
+
+            // --- Initialization ---
+            updateCartCounter();
+
+            // --- Header & Nav ---
+            
+            // Debounced Sticky header
+            const handleScroll = () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            };
+            
+            window.addEventListener('scroll', debounce(handleScroll, 15));
+
+            // Mobile menu toggle
+            menuToggle.addEventListener('click', () => {
+                nav.classList.toggle('active');
+            });
+
+            // --- Page Navigation ---
+            function showPage(pageId) {
+                let activePage = null;
+                // Hide all pages
+                pageSections.forEach(page => {
+                    if (!page.classList.contains('hidden')) {
+                        activePage = page; // Find the currently active page
+                    }
+                    page.classList.add('hidden');
+                });
+
+                // --- Special action: Render cart page before showing ---
+                if (pageId === 'page-cart') {
+                    renderCartPage();
+                }
+
+                // Show target page
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    // Check if we are navigating to a different page
+                    if (activePage !== targetPage) {
+                         // Add the animation class
+                        targetPage.classList.add('fade-in-page'); 
+                    }
+                    targetPage.classList.remove('hidden');
+                    
+                    // Remove the animation class after it finishes
+                    // to allow it to run again next time
+                    setTimeout(() => {
+                        if (targetPage.classList.contains('fade-in-page')) {
+                            targetPage.classList.remove('fade-in-page');
+                        }
+                    }, 500); // Match animation duration (0.5s)
+
+                    window.scrollTo(0, 0); // Scroll to top
+                }
+
+                // Update active nav link
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.page === pageId) {
+                        link.classList.add('active');
+                    }
+                });
+
+                // Close mobile menu on nav
+                nav.classList.remove('active');
+            }
+
+            // Add click listeners to all nav links (in header and footer)
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = e.target.dataset.page;
+                    if (pageId) {
+                        showPage(pageId);
+                    }
+                });
+            });
+            
+            // Add click listener for cart icon
+            cartIcon.addEventListener('click', (e) => {
+                e.preventDefault();
+                // We use currentTarget to ensure we get the element with the data-page attribute,
+                // even if the user clicks the SVG or span inside it.
+                const pageId = e.currentTarget.dataset.page;
+                if (pageId) {
+                    showPage(pageId);
+                }
+            });
+
+
+            // --- Cart Logic ---
+
+            // Listen for clicks on the product grid
+            if (productGrid) {
+                productGrid.addEventListener('click', (e) => {
+                    // Check if the "Add to Order" button was clicked
+                    if (e.target.classList.contains('add-to-order')) {
+                        const card = e.target.closest('.product-card');
+                        const quantitySelect = card.querySelector('.product-quantity');
+                        
+                        const selectedOption = quantitySelect.options[quantitySelect.selectedIndex];
+                        
+                        // Extract price from the selected option text (e.g., "500g - Rs. 100")
+                        const priceText = selectedOption.text.split('Rs. ')[1];
+                        const price = priceText ? parseFloat(priceText) : parseFloat(card.dataset.price); // Fallback
+
+                        if (isNaN(price)) {
+                            console.error("Could not parse price for item:", card.dataset.name);
+                            return;
+                        }
+
+                        const item = {
+                            id: card.dataset.id + '-' + quantitySelect.value, // Unique ID for item + quantity
+                            name: card.dataset.name,
+                            quantity: quantitySelect.value,
+                            price: price
+                        };
+
+                        addToCart(item);
+                    }
+                });
+            }
+
+            function addToCart(item) {
+                // Check if item (with same quantity) is already in cart
+                const existingItemIndex = cart.findIndex(cartItem => cartItem.id === item.id);
+
+                if (existingItemIndex > -1) {
+                    // We'll just alert for now. Later we can add quantity.
+                    showToast("Item is already in your order!");
+                } else {
+                    cart.push(item);
+                    showToast("Added to order!");
+                }
+                
+                saveCart();
+                updateCartCounter();
+            }
+
+            function saveCart() {
+                localStorage.setItem('khetKhalihaanCart', JSON.stringify(cart));
+            }
+
+            function updateCartCounter() {
+                cartBadge.textContent = cart.length;
+            }
+
+            function showToast(message) {
+                // Clear any existing timer
+                if (toastTimer) {
+                    clearTimeout(toastTimer);
+                }
+
+                toast.textContent = message;
+                toast.classList.add('show');
+
+                // Hide toast after 2.5 seconds
+                toastTimer = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2500);
+            }
+
+            // --- New Cart Page & Checkout Logic ---
+
+            function renderCartPage() {
+                // Clear container
+                cartItemsContainer.innerHTML = '';
+                let grandTotal = 0;
+
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = '<div class="cart-empty-message">Your cart is currently empty.</div>';
+                    cartTotalSummary.innerHTML = 'Grand Total: <span>Rs. 0</span>';
+                    proceedToCheckoutBtn.disabled = true;
+                    proceedToCheckoutBtn.style.opacity = '0.6';
+                    proceedToCheckoutBtn.style.cursor = 'not-allowed';
+                } else {
+                    cart.forEach(item => {
+                        grandTotal += item.price;
+                        const itemHtml = `
+                            <div class="cart-item" data-id="${item.id}">
+                                <div class="cart-item-details">
+                                    <strong>${item.name}</strong>
+                                    <span>(${item.quantity})</span>
+                                </div>
+                                <div class="cart-item-price">
+                                    <span>Rs. ${item.price.toFixed(2)}</span>
+                                    <button class="cart-item-remove" title="Remove item">&times;</button>
+                                </div>
+                            </div>
+                        `;
+                        cartItemsContainer.innerHTML += itemHtml;
+                    });
+
+                    cartTotalSummary.innerHTML = `Grand Total: <span>Rs. ${grandTotal.toFixed(2)}</span>`;
+                    proceedToCheckoutBtn.disabled = false;
+                    proceedToCheckoutBtn.style.opacity = '1';
+                    proceedToCheckoutBtn.style.cursor = 'pointer';
+                }
+            }
+
+            // Add listener for removing items from cart
+            cartItemsContainer.addEventListener('click', (e) => {
+                if (e.target.classList.contains('cart-item-remove')) {
+                    const itemId = e.target.closest('.cart-item').dataset.id;
+                    
+                    // Remove item from cart array
+                    cart = cart.filter(item => item.id !== itemId);
+                    
+                    saveCart();
+                    updateCartCounter();
+                    renderCartPage(); // Re-render the cart list
+                    showToast("Item removed from order.");
+                }
+            });
+
+            // "Proceed to Checkout" button listener
+            proceedToCheckoutBtn.addEventListener('click', () => {
+                showPage('page-checkout');
+            });
+
+            // Checkout Form submission
+            checkoutForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                handleWhatsAppOrder();
+            });
+
+            function handleWhatsAppOrder() {
+                // 1. Get Form Data
+                const name = document.getElementById('fullName').value;
+                const mobile = document.getElementById('mobile').value;
+                const pinCode = document.getElementById('pinCode').value;
+                const address = document.getElementById('address').value;
+                const altContact = document.getElementById('altContact').value || 'N/A';
+                const instructions = document.getElementById('instructions').value || 'None';
+
+                // 2. Format Order Details
+                let orderDetails = '';
+                let grandTotal = 0;
+                cart.forEach(item => {
+                    orderDetails += `${item.name} - ${item.quantity} - Rs. ${item.price.toFixed(2)}\n`;
+                    grandTotal += item.price;
+                });
+
+                // 3. Create the WhatsApp message
+                const message = `
+🌾 *KHET KHALIHAAN - New Order* 🌾
+
+📋 *ORDER DETAILS:*
+${orderDetails}
+*Total Amount: Rs. ${grandTotal.toFixed(2)}*
+
+👤 *CUSTOMER DETAILS:*
+Name: ${name}
+Mobile: ${mobile}
+Address: ${address}
+Pin Code: ${pinCode}
+Alternate Contact: ${altContact}
+
+📝 *Special Instructions:*
+${instructions}
+
+Here's my order and my details. Please proceed with the order.
+                `;
+
+                // 4. Encode message and create URL
+                // Replace PLACEHOLDER_NUMBER with actual WhatsApp Business number (format: 91XXXXXXXXXX)
+                const whatsappNumber = "919470383407"; // <-- IMPORTANT: Number updated!
+                const encodedMessage = encodeURIComponent(message.trim());
+                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+                // 5. Try to open WhatsApp and reset the form
+                try {
+                    if (whatsappURL) {
+                        window.open(whatsappURL, '_blank'); // Open WhatsApp in a new tab
+                    }
+                } catch (e) {
+                    console.error("Could not open WhatsApp window:", e);
+                    // Show a message to the user that it might be blocked
+                    showToast("Pop-up blocked. Please check your browser.");
+                }
+                
+                // 6. Reset everything
+                cart = [];
+                saveCart();
+                updateCartCounter();
+                checkoutForm.reset();
+                showPage('page-home');
+                showToast("Order submitted! Please confirm on WhatsApp.");
+            }
+
+            // --- Intersection Observer for Scroll Animations ---
+            const scrollElements = document.querySelectorAll('.animate-on-scroll');
+
+            const elementObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            scrollElements.forEach(el => {
+                elementObserver.observe(el);
+            });
+
+            // Modal button listeners
+            /* MODAL LISTENERS REMOVED */
+
+
+        }); // End DOMContentLoaded
+    </script>
+
+</body>
+</html>
