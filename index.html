@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khet Khalihaan -Harvested With Care,Delivered From Bihar</title>
+    <title>Khet Khalihaan - Harvested With Care, Delivered From Bihar</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,6 +27,7 @@
             --bg-beige: #F5F5DC;
             --text-dark: #333;
             --text-light: #FFFEF7;
+            --error-red: #d32f2f;
 
             /* Fonts */
             --font-header: 'Montserrat', sans-serif;
@@ -128,9 +129,16 @@
         .btn-secondary:hover {
             background-color: #b8860b; /* Darker gold */
         }
+        
+        .btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
 
         .hidden {
-            display: none;
+            display: none !important;
         }
 
         /* ------------------------- */
@@ -140,12 +148,10 @@
             position: sticky;
             top: 0;
             width: 100%;
-            background-color: rgba(255, 254, 247, 0.95); /* Removed expensive backdrop-filter */
-            /* backdrop-filter: blur(10px); */
-            /* -webkit-backdrop-filter: blur(10px); */
+            background-color: rgba(255, 254, 247, 0.95); 
             z-index: 1000;
             padding: 1rem 0;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Targeted transition */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease; 
             box-shadow: 0 0 0 rgba(0, 0, 0, 0);
         }
 
@@ -311,7 +317,6 @@
         
         /* 1. Page transition animation */
         .page-section.fade-in-page {
-            /* This class is added temporarily by JS */
             animation: fadeInPage 0.5s ease-out forwards;
         }
 
@@ -331,7 +336,7 @@
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            transition-delay: var(--delay, 0s); /* Allow for staggered animations */
+            transition-delay: var(--delay, 0s); 
         }
         
         .animate-on-scroll.is-visible {
@@ -350,8 +355,25 @@
             transform: translateX(0);
             opacity: 1;
         }
+
+        /* 3. Text Gradient Animation for Heading */
+        .animated-heading {
+            background: linear-gradient(to right, var(--green-dark) 0%, var(--green-medium) 20%, var(--golden-dark) 40%, var(--green-medium) 60%, var(--green-dark) 100%);
+            background-size: 200% auto;
+            color: #000;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
         
-        /* 3. Hover animations */
+        /* 4. Hover animations */
         .specialty-item, .trust-item {
             transition: var(--transition-smooth);
         }
@@ -376,24 +398,24 @@
         }
         .specialty-item .icon {
             font-size: 3rem;
-            color: var(--golden-dark); /* Use the gold color to differentiate */
+            color: var(--golden-dark); 
             margin-bottom: 1rem;
         }
         .specialty-item h4 {
             font-family: var(--font-header);
             font-size: 1.1rem;
             color: var(--green-dark);
-            margin-bottom: 0.5rem; /* Added margin for the <p> tag */
+            margin-bottom: 0.5rem; 
         }
         .specialty-item p {
             font-size: 0.95rem;
             color: var(--text-dark);
-            margin-bottom: 0; /* Override default p margin */
+            margin-bottom: 0; 
         }
 
         /* Gallery Section */
         #gallery {
-            background: var(--bg-beige); /* Match the 'about' section */
+            background: var(--bg-beige); 
         }
         .gallery-container {
             display: grid;
@@ -401,13 +423,13 @@
             gap: 2rem;
         }
         .gallery-item {
-            overflow: hidden; /* For hover effect */
+            overflow: hidden; 
             border-radius: 10px;
             box-shadow: var(--shadow-medium);
         }
         .gallery-item img {
             width: 100%;
-            height: 400px; /* Taller height for a gallery */
+            height: 400px; 
             object-fit: cover;
             border-radius: 10px;
             transition: var(--transition-smooth);
@@ -435,7 +457,7 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Optimized transition */
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         .product-card:hover {
             transform: translateY(-8px);
@@ -445,20 +467,18 @@
         .product-image {
             height: 250px;
             background-color: #eee;
-            overflow: hidden; /* Ensure image corners are rounded if card is */
+            overflow: hidden;
         }
         .product-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* This ensures the image covers the area, cropping as needed */
+            object-fit: cover;
             transition: transform 0.3s ease;
         }
         .product-card:hover .product-image img {
-            transform: scale(1.05); /* Add a slight zoom on hover */
+            transform: scale(1.05);
         }
         
-        /* Specific image placeholders REMOVED */
-
         .product-info {
             padding: 1.5rem;
             flex-grow: 1;
@@ -471,14 +491,21 @@
         }
         .product-price {
             font-family: var(--font-price);
-            font-size: 1.3rem;
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+        .product-rate {
+            font-family: var(--font-price);
+            font-size: 1.2rem;
             color: var(--green-dark);
-            font-weight: 500;
+            font-weight: 700;
             margin-bottom: 1rem;
+            display: block;
         }
 
         .product-actions {
-            margin-top: auto; /* Pushes to bottom */
+            margin-top: auto; 
             display: flex;
             flex-direction: column;
             gap: 0.75rem;
@@ -487,7 +514,8 @@
             font-size: 0.9rem;
             font-weight: 600;
         }
-        .product-actions select {
+        .product-actions select, 
+        .product-actions input[type="number"] {
             width: 100%;
             padding: 0.5rem;
             border: 1px solid #ddd;
@@ -498,6 +526,9 @@
             width: 100%;
             padding: 0.75rem;
             font-size: 0.9rem;
+        }
+        .custom-qty-wrapper {
+            margin-bottom: 0.5rem;
         }
 
         /* ----------------------------- */
@@ -575,13 +606,20 @@
             font-size: 1.8rem;
             font-family: var(--font-header);
             color: var(--green-dark);
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
         }
         .cart-total span {
             font-family: var(--font-price);
             font-weight: 500;
             color: var(--text-dark);
         }
+        .min-order-msg {
+            color: var(--error-red);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
         .checkout-actions {
             display: flex;
             justify-content: space-between;
@@ -815,6 +853,36 @@
             .gallery-item img {
                 height: 300px; /* Adjust height for mobile */
             }
+            
+            /* --- Product Grid: 2 Columns on Mobile --- */
+            .product-grid {
+                grid-template-columns: 1fr 1fr; /* Force 2 columns */
+                gap: 1rem; /* Reduce gap */
+            }
+            .product-info {
+                padding: 0.75rem; /* Reduce padding inside card */
+            }
+            .product-image {
+                height: 160px; /* Smaller image height */
+            }
+            .product-info h3 {
+                font-size: 1rem; /* Smaller heading */
+            }
+            .product-price, .product-rate {
+                font-size: 0.9rem;
+            }
+            .product-actions .btn {
+                padding: 0.5rem;
+                font-size: 0.8rem;
+            }
+            .product-actions label {
+                font-size: 0.8rem;
+            }
+            .product-actions select, 
+            .product-actions input {
+                padding: 0.35rem;
+                font-size: 0.85rem;
+            }
 
             /* --- Cart Page --- */
             .cart-item {
@@ -844,33 +912,12 @@
         }
 
         /* Added for very small screens */
-        @media (max-width: 480px) {
-            h1, .hero-content h1 {
-                font-size: 2.2rem; /* Further reduce main heading size */
-            }
-            h2 {
-                font-size: 1.75rem;
-            }
-            h3 {
-                font-size: 1.3rem;
-            }
-
-            .btn {
-                padding: 0.75rem 1.25rem; /* Reduce button padding slightly */
-                font-size: 0.9rem;
-            }
-
+        @media (max-width: 350px) {
             .product-grid {
-                /* Center single-column grid on small screens */
-                grid-template-columns: minmax(0, 300px);
-                justify-content: center;
+                /* Back to 1 column for extremely small screens */
+                grid-template-columns: 1fr;
             }
         }
-
-        /* ------------------------- */
-        /* --- 8. Modal ------------ */
-        /* ------------------------- */
-        /* MODAL REMOVED */
     </style>
 </head>
 <body>
@@ -917,7 +964,6 @@
             <section id="hero">
                 <div class="hero-content">
                     <h1 class="animate-on-scroll">From Our Fields to Your Family</h1>
-                    <!-- FIXED: Corrected class, closing tag, and added text content -->
                     <p style="font-size: 1.2rem; text-shadow: 1px 1px 4px rgba(0,0,0,0.5); --delay: 0.1s;" class="animate-on-scroll">Harvested with care. Delivered from Bihar.</p>
                     <a href="#" class="btn btn-secondary nav-link animate-on-scroll" data-page="page-products" style="--delay: 0.2s;">Explore Farm Fresh Products</a>
                 </div>
@@ -946,10 +992,8 @@
             <!-- ======================= -->
             <section id="gallery" class="animate-on-scroll">
                 <div class="container">
-                    <!-- FIXED: Updated gallery title -->
                     <h2 style="text-align: center; margin-bottom: 3rem;">Where every grain Tells a story</h2>
                     <div class="gallery-container">
-                        <!-- IMAGES SWAPPED -->
                         <figure class="gallery-item">
                             <img src="https://i.ibb.co/SDkTnr0L/Whats-App-Image-2025-11-14-at-15-36-54-d5536ac4.jpg" alt="Stone grinding process at Khet Khalihaan" loading="lazy">
                         </figure>
@@ -1023,160 +1067,230 @@
         <div id="page-products" class="page-section hidden">
             <section id="products">
                 <div class="container">
-                    <h2 style="text-align: center; margin-bottom: 3rem;">Our Farm Fresh Products</h2>
+                    <h2 class="animated-heading" style="text-align: center; margin-bottom: 3rem;">Our Farm Fresh Products</h2>
                     
                     <!-- Product Grid -->
                     <div class="product-grid" id="product-grid">
 
-                        <!-- Product: Haldi -->
-                        <div class="product-card" data-id="1" data-name="Haldi (Turmeric Powder)" data-price="40">
+                        <!-- Product: Haldi (Rate: 400/kg) -->
+                        <div class="product-card" data-id="1" data-name="Haldi (Turmeric Powder)" data-rate="400">
                             <div class="product-image">
                                 <img src="https://i.ibb.co/6cZczVS4/64b3ef54-03d1-4dcb-bef2-3896062c63f4.jpg" alt="Haldi (Turmeric Powder)" loading="lazy">
                             </div>
                             <div class="product-info">
                                 <h3>Haldi (Turmeric Powder)</h3>
-                                <span class="product-price">Rs. 40 / 100 grams</span>
+                                <span class="product-price">Original: Rs. 40 / 100g</span>
+                                <span class="product-rate">Rate: Rs. 400 / Kg</span>
                                 <div class="product-actions">
-                                    <label for="qty-1">Quantity:</label>
-                                    <select id="qty-1" class="product-quantity">
-                                        <option value="100g">100 grams - Rs. 40</option>
-                                        <option value="250g">250 grams - Rs. 100</option>
-                                        <option value="500g">500 grams - Rs. 200</option>
+                                    <label>Quantity:</label>
+                                    <select class="product-quantity-select">
+                                        <option value="0.5">500 grams</option>
+                                        <option value="1">1 kg</option>
+                                        <option value="2">2 kg</option>
+                                        <option value="3">3 kg</option>
+                                        <option value="4">4 kg</option>
+                                        <option value="5">5 kg</option>
+                                        <option value="custom">Custom (Enter grams)</option>
                                     </select>
+                                    <div class="custom-qty-wrapper hidden">
+                                        <input type="number" placeholder="Enter grams (e.g. 750)" class="custom-qty-input" min="100" step="50">
+                                    </div>
                                     <button class="btn add-to-order">Add to Order</button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Product: Coriander -->
-                        <div class="product-card" data-id="2" data-name="Coriander Powder" data-price="35">
+                        <!-- Product: Coriander (Rate: 350/kg) -->
+                        <div class="product-card" data-id="2" data-name="Coriander Powder" data-rate="350">
                             <div class="product-image">
                                 <img src="https://i.ibb.co/pB9Ft3mN/60228830-ddb8-427c-b025-8529165e2118.jpg" alt="Coriander Powder" loading="lazy">
                             </div>
                             <div class="product-info">
                                 <h3>Coriander Powder</h3>
-                                <span class="product-price">Rs. 35 / 100 grams</span>
+                                <span class="product-price">Original: Rs. 35 / 100g</span>
+                                <span class="product-rate">Rate: Rs. 350 / Kg</span>
                                 <div class="product-actions">
-                                    <label for="qty-2">Quantity:</label>
-                                    <select id="qty-2" class="product-quantity">
-                                        <option value="100g">100 grams - Rs. 35</option>
-                                        <option value="250g">250 grams - Rs. 85</option>
-                                        <option value="500g">500 grams - Rs. 170</option>
+                                    <label>Quantity:</label>
+                                    <select class="product-quantity-select">
+                                        <option value="0.5">500 grams</option>
+                                        <option value="1">1 kg</option>
+                                        <option value="2">2 kg</option>
+                                        <option value="3">3 kg</option>
+                                        <option value="4">4 kg</option>
+                                        <option value="5">5 kg</option>
+                                        <option value="custom">Custom (Enter grams)</option>
                                     </select>
+                                    <div class="custom-qty-wrapper hidden">
+                                        <input type="number" placeholder="Enter grams" class="custom-qty-input" min="100" step="50">
+                                    </div>
                                     <button class="btn add-to-order">Add to Order</button>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Product: Besan -->
-                        <div class="product-card" data-id="3" data-name="Chana Besan (Gram Flour)" data-price="100">
+                        <!-- Product: Besan (Rate: 200/kg) -->
+                        <div class="product-card" data-id="3" data-name="Chana Besan (Gram Flour)" data-rate="200">
                             <div class="product-image">
                                 <img src="https://i.ibb.co/9Hyh2bzx/98c4d3c3-a813-4365-b2c5-f0dd0b20194f.jpg" alt="Chana Besan (Gram Flour)" loading="lazy">
                             </div>
                             <div class="product-info">
-                                <h3>Chana Besan (Gram Flour)</h3>
-                                <span class="product-price">Rs. 100 / 500 grams</span>
+                                <h3>Chana Besan</h3>
+                                <span class="product-price">Original: Rs. 100 / 500g</span>
+                                <span class="product-rate">Rate: Rs. 200 / Kg</span>
                                 <div class="product-actions">
-                                    <label for="qty-3">Quantity:</label>
-                                    <select id="qty-3" class="product-quantity">
-                                        <option value="500g">500 grams - Rs. 100</option>
-                                        <option value="1kg">1 kg - Rs. 200</option>
+                                    <label>Quantity:</label>
+                                    <select class="product-quantity-select">
+                                        <option value="0.5">500 grams</option>
+                                        <option value="1">1 kg</option>
+                                        <option value="2">2 kg</option>
+                                        <option value="3">3 kg</option>
+                                        <option value="4">4 kg</option>
+                                        <option value="5">5 kg</option>
+                                        <option value="custom">Custom (Enter grams)</option>
                                     </select>
+                                    <div class="custom-qty-wrapper hidden">
+                                        <input type="number" placeholder="Enter grams" class="custom-qty-input" min="100" step="50">
+                                    </div>
                                     <button class="btn add-to-order">Add to Order</button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Product: Sattu -->
-                        <div class="product-card" data-id="4" data-name="Multi Grain Sattu" data-price="150">
+                        <!-- Product: Sattu (Rate: 300/kg) -->
+                        <div class="product-card" data-id="4" data-name="Multi Grain Sattu" data-rate="300">
                             <div class="product-image">
                                 <img src="https://i.ibb.co/prKJGghq/578c0b08-6195-4e07-921d-2912f3d47487.jpg" alt="Multi Grain Sattu" loading="lazy">
                             </div>
                             <div class="product-info">
                                 <h3>Multi Grain Sattu</h3>
-                                <span class="product-price">Rs. 150 / 500 grams</span>
+                                <span class="product-price">Original: Rs. 150 / 500g</span>
+                                <span class="product-rate">Rate: Rs. 300 / Kg</span>
                                 <div class="product-actions">
-                                    <label for="qty-4">Quantity:</label>
-                                    <select id="qty-4" class="product-quantity">
-                                        <option value="500g">500 grams - Rs. 150</option>
-                                        <option value="1kg">1 kg - Rs. 300</option>
+                                    <label>Quantity:</label>
+                                    <select class="product-quantity-select">
+                                        <option value="0.5">500 grams</option>
+                                        <option value="1">1 kg</option>
+                                        <option value="2">2 kg</option>
+                                        <option value="3">3 kg</option>
+                                        <option value="4">4 kg</option>
+                                        <option value="5">5 kg</option>
+                                        <option value="custom">Custom (Enter grams)</option>
                                     </select>
+                                    <div class="custom-qty-wrapper hidden">
+                                        <input type="number" placeholder="Enter grams" class="custom-qty-input" min="100" step="50">
+                                    </div>
                                     <button class="btn add-to-order">Add to Order</button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Product: Moong Dal -->
-                        <div class="product-card" data-id="5" data-name="Moong Dal" data-price="210">
+                        <!-- Product: Moong Dal (Rate: 210/kg) -->
+                        <div class="product-card" data-id="5" data-name="Moong Dal" data-rate="210">
                             <div class="product-image">
                                 <img src="https://i.ibb.co/rGrn8R3c/a639fdf4-2974-47c8-9171-9c18bd5a4daf.png" alt="Moong Dal" loading="lazy">
                             </div>
                             <div class="product-info">
                                 <h3>Moong Dal</h3>
-                                <span class="product-price">Rs. 210 / Kg</span>
+                                <span class="product-price">Original: Rs. 210 / Kg</span>
+                                <span class="product-rate">Rate: Rs. 210 / Kg</span>
                                 <div class="product-actions">
-                                    <label for="qty-5">Quantity:</label>
-                                    <select id="qty-5" class="product-quantity">
-                                        <option value="500g">500 grams - Rs. 105</option>
-                                        <option value="1kg">1 kg - Rs. 210</option>
+                                    <label>Quantity:</label>
+                                    <select class="product-quantity-select">
+                                        <option value="0.5">500 grams</option>
+                                        <option value="1">1 kg</option>
+                                        <option value="2">2 kg</option>
+                                        <option value="3">3 kg</option>
+                                        <option value="4">4 kg</option>
+                                        <option value="5">5 kg</option>
+                                        <option value="custom">Custom (Enter grams)</option>
                                     </select>
+                                    <div class="custom-qty-wrapper hidden">
+                                        <input type="number" placeholder="Enter grams" class="custom-qty-input" min="100" step="50">
+                                    </div>
                                     <button class="btn add-to-order">Add to Order</button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Product: Arhar Dal -->
-                        <div class="product-card" data-id="6" data-name="Arhar Dal (Toor Dal)" data-price="280">
+                        <!-- Product: Arhar Dal (Rate: 280/kg) -->
+                        <div class="product-card" data-id="6" data-name="Arhar Dal (Toor Dal)" data-rate="280">
                             <div class="product-image">
                                 <img src="https://i.ibb.co/m54pDHnS/dc45c0b1-1b7b-4744-a621-5f6a4b10bb05.jpg" alt="Arhar Dal (Toor Dal)" loading="lazy">
                             </div>
                             <div class="product-info">
                                 <h3>Arhar Dal (Toor Dal)</h3>
-                                <span class="product-price">Rs. 280 / Kg</span>
+                                <span class="product-price">Original: Rs. 280 / Kg</span>
+                                <span class="product-rate">Rate: Rs. 280 / Kg</span>
                                 <div class="product-actions">
-                                    <label for="qty-6">Quantity:</label>
-                                    <select id="qty-6" class="product-quantity">
-                                        <option value="500g">500 grams - Rs. 140</option>
-                                        <option value="1kg">1 kg - Rs. 280</option>
+                                    <label>Quantity:</label>
+                                    <select class="product-quantity-select">
+                                        <option value="0.5">500 grams</option>
+                                        <option value="1">1 kg</option>
+                                        <option value="2">2 kg</option>
+                                        <option value="3">3 kg</option>
+                                        <option value="4">4 kg</option>
+                                        <option value="5">5 kg</option>
+                                        <option value="custom">Custom (Enter grams)</option>
                                     </select>
+                                    <div class="custom-qty-wrapper hidden">
+                                        <input type="number" placeholder="Enter grams" class="custom-qty-input" min="100" step="50">
+                                    </div>
                                     <button class="btn add-to-order">Add to Order</button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Product: Chana Dal -->
-                        <div class="product-card" data-id="7" data-name="Chana Dal" data-price="200">
+                        <!-- Product: Chana Dal (Rate: 200/kg) -->
+                        <div class="product-card" data-id="7" data-name="Chana Dal" data-rate="200">
                             <div class="product-image">
                                 <img src="https://i.ibb.co/PZ9pP0zZ/8d94c0c7-ae6b-4006-8a94-eb6431207a48.jpg" alt="Chana Dal" loading="lazy">
                             </div>
                             <div class="product-info">
                                 <h3>Chana Dal</h3>
-                                <span class="product-price">Rs. 200 / Kg</span>
+                                <span class="product-price">Original: Rs. 200 / Kg</span>
+                                <span class="product-rate">Rate: Rs. 200 / Kg</span>
                                 <div class="product-actions">
-                                    <label for="qty-7">Quantity:</label>
-                                    <select id="qty-7" class="product-quantity">
-                                        <option value="500g">500 grams - Rs. 100</option>
-                                        <option value="1kg">1 kg - Rs. 200</option>
+                                    <label>Quantity:</label>
+                                    <select class="product-quantity-select">
+                                        <option value="0.5">500 grams</option>
+                                        <option value="1">1 kg</option>
+                                        <option value="2">2 kg</option>
+                                        <option value="3">3 kg</option>
+                                        <option value="4">4 kg</option>
+                                        <option value="5">5 kg</option>
+                                        <option value="custom">Custom (Enter grams)</option>
                                     </select>
+                                    <div class="custom-qty-wrapper hidden">
+                                        <input type="number" placeholder="Enter grams" class="custom-qty-input" min="100" step="50">
+                                    </div>
                                     <button class="btn add-to-order">Add to Order</button>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Product: Masoor Dal -->
-                        <div class="product-card" data-id="8" data-name="Masoor Dal" data-price="200">
+                        <!-- Product: Masoor Dal (Rate: 200/kg) -->
+                        <div class="product-card" data-id="8" data-name="Masoor Dal" data-rate="200">
                             <div class="product-image">
                                 <img src="https://i.ibb.co/Wvb4w2DM/d0aa6aed-fa81-4e23-ae09-29886b8b3028.jpg" alt="Masoor Dal" loading="lazy">
                             </div>
                             <div class="product-info">
                                 <h3>Masoor Dal</h3>
-                                <span class="product-price">Rs. 200 / Kg</span>
+                                <span class="product-price">Original: Rs. 200 / Kg</span>
+                                <span class="product-rate">Rate: Rs. 200 / Kg</span>
                                 <div class="product-actions">
-                                    <label for="qty-8">Quantity:</label>
-                                    <select id="qty-8" class="product-quantity">
-                                        <option value="500g">500 grams - Rs. 100</option>
-                                        <option value="1kg">1 kg - Rs. 200</option>
+                                    <label>Quantity:</label>
+                                    <select class="product-quantity-select">
+                                        <option value="0.5">500 grams</option>
+                                        <option value="1">1 kg</option>
+                                        <option value="2">2 kg</option>
+                                        <option value="3">3 kg</option>
+                                        <option value="4">4 kg</option>
+                                        <option value="5">5 kg</option>
+                                        <option value="custom">Custom (Enter grams)</option>
                                     </select>
+                                    <div class="custom-qty-wrapper hidden">
+                                        <input type="number" placeholder="Enter grams" class="custom-qty-input" min="100" step="50">
+                                    </div>
                                     <button class="btn add-to-order">Add to Order</button>
                                 </div>
                             </div>
@@ -1205,6 +1319,9 @@
                         <h3 class="cart-total" id="cart-total-summary">
                             Grand Total: <span>Rs. 0</span>
                         </h3>
+                        <div id="min-order-warning" class="min-order-msg hidden">
+                            Minimum order value of Rs. 500 required to checkout.
+                        </div>
                         <div class="checkout-actions">
                             <a href="#" class="nav-link" data-page="page-products" style="font-weight: 600;">&larr; Continue Shopping</a>
                             <button class="btn btn-secondary" id="proceed-to-checkout-btn">Proceed to Checkout &rarr;</button>
@@ -1329,12 +1446,6 @@
 
 
     <!-- ======================= -->
-    <!-- ====== MODAL =========== -->
-    <!-- ======================= -->
-    <!-- MODAL REMOVED -->
-
-
-    <!-- ======================= -->
     <!-- ====== JAVASCRIPT ===== -->
     <!-- ======================= -->
     <script>
@@ -1354,9 +1465,11 @@
             // New elements for Cart & Checkout
             const cartItemsContainer = document.getElementById('cart-items-container');
             const cartTotalSummary = document.getElementById('cart-total-summary');
+            const minOrderWarning = document.getElementById('min-order-warning');
             const proceedToCheckoutBtn = document.getElementById('proceed-to-checkout-btn');
             const checkoutForm = document.getElementById('checkout-form');
-            /* MODAL ELEMENTS REMOVED */
+            
+            const MIN_ORDER_VALUE = 500;
 
 
             // --- State ---
@@ -1364,9 +1477,6 @@
             let toastTimer;
 
             // --- Debounce Function ---
-            // Returns a function, that, as long as it continues to be invoked, will not
-            // be triggered. The function will be called after it stops being called for
-            // N milliseconds.
             function debounce(func, wait = 15) {
                 let timeout;
                 return function(...args) {
@@ -1403,7 +1513,7 @@
                 // Hide all pages
                 pageSections.forEach(page => {
                     if (!page.classList.contains('hidden')) {
-                        activePage = page; // Find the currently active page
+                        activePage = page; 
                     }
                     page.classList.add('hidden');
                 });
@@ -1424,12 +1534,11 @@
                     targetPage.classList.remove('hidden');
                     
                     // Remove the animation class after it finishes
-                    // to allow it to run again next time
                     setTimeout(() => {
                         if (targetPage.classList.contains('fade-in-page')) {
                             targetPage.classList.remove('fade-in-page');
                         }
-                    }, 500); // Match animation duration (0.5s)
+                    }, 500); 
 
                     window.scrollTo(0, 0); // Scroll to top
                 }
@@ -1460,8 +1569,6 @@
             // Add click listener for cart icon
             cartIcon.addEventListener('click', (e) => {
                 e.preventDefault();
-                // We use currentTarget to ensure we get the element with the data-page attribute,
-                // even if the user clicks the SVG or span inside it.
                 const pageId = e.currentTarget.dataset.page;
                 if (pageId) {
                     showPage(pageId);
@@ -1469,32 +1576,62 @@
             });
 
 
-            // --- Cart Logic ---
-
-            // Listen for clicks on the product grid
+            // --- Product Grid Interactions ---
             if (productGrid) {
+                // Delegate changes on selects
+                productGrid.addEventListener('change', (e) => {
+                    if (e.target.classList.contains('product-quantity-select')) {
+                        const select = e.target;
+                        const card = select.closest('.product-card');
+                        const wrapper = card.querySelector('.custom-qty-wrapper');
+                        
+                        if (select.value === 'custom') {
+                            wrapper.classList.remove('hidden');
+                        } else {
+                            wrapper.classList.add('hidden');
+                        }
+                    }
+                });
+
+                // Delegate clicks on Add to Order
                 productGrid.addEventListener('click', (e) => {
                     // Check if the "Add to Order" button was clicked
                     if (e.target.classList.contains('add-to-order')) {
                         const card = e.target.closest('.product-card');
-                        const quantitySelect = card.querySelector('.product-quantity');
+                        const quantitySelect = card.querySelector('.product-quantity-select');
+                        const customInput = card.querySelector('.custom-qty-input');
                         
-                        const selectedOption = quantitySelect.options[quantitySelect.selectedIndex];
-                        
-                        // Extract price from the selected option text (e.g., "500g - Rs. 100")
-                        const priceText = selectedOption.text.split('Rs. ')[1];
-                        const price = priceText ? parseFloat(priceText) : parseFloat(card.dataset.price); // Fallback
+                        const ratePerKg = parseFloat(card.dataset.rate);
+                        let finalWeightInKg = 0;
+                        let displayQuantity = '';
 
-                        if (isNaN(price)) {
-                            console.error("Could not parse price for item:", card.dataset.name);
-                            return;
+                        // Determine quantity
+                        if (quantitySelect.value === 'custom') {
+                            const grams = parseFloat(customInput.value);
+                            if (isNaN(grams) || grams <= 0) {
+                                showToast("Please enter a valid weight in grams.");
+                                return;
+                            }
+                            finalWeightInKg = grams / 1000;
+                            displayQuantity = grams + ' grams';
+                        } else {
+                            finalWeightInKg = parseFloat(quantitySelect.value);
+                            // Format display string
+                            if (finalWeightInKg < 1) {
+                                displayQuantity = (finalWeightInKg * 1000) + ' grams';
+                            } else {
+                                displayQuantity = finalWeightInKg + ' kg';
+                            }
                         }
 
+                        // Calculate Price
+                        const finalPrice = Math.round(finalWeightInKg * ratePerKg);
+
                         const item = {
-                            id: card.dataset.id + '-' + quantitySelect.value, // Unique ID for item + quantity
+                            id: card.dataset.id + '-' + displayQuantity, // Unique ID for item + quantity
                             name: card.dataset.name,
-                            quantity: quantitySelect.value,
-                            price: price
+                            quantity: displayQuantity,
+                            price: finalPrice
                         };
 
                         addToCart(item);
@@ -1507,11 +1644,10 @@
                 const existingItemIndex = cart.findIndex(cartItem => cartItem.id === item.id);
 
                 if (existingItemIndex > -1) {
-                    // We'll just alert for now. Later we can add quantity.
                     showToast("Item is already in your order!");
                 } else {
                     cart.push(item);
-                    showToast("Added to order!");
+                    showToast(`Added ${item.quantity} for Rs. ${item.price}`);
                 }
                 
                 saveCart();
@@ -1541,7 +1677,7 @@
                 }, 2500);
             }
 
-            // --- New Cart Page & Checkout Logic ---
+            // --- Cart Page Logic ---
 
             function renderCartPage() {
                 // Clear container
@@ -1551,6 +1687,7 @@
                 if (cart.length === 0) {
                     cartItemsContainer.innerHTML = '<div class="cart-empty-message">Your cart is currently empty.</div>';
                     cartTotalSummary.innerHTML = 'Grand Total: <span>Rs. 0</span>';
+                    minOrderWarning.classList.add('hidden');
                     proceedToCheckoutBtn.disabled = true;
                     proceedToCheckoutBtn.style.opacity = '0.6';
                     proceedToCheckoutBtn.style.cursor = 'not-allowed';
@@ -1564,7 +1701,7 @@
                                     <span>(${item.quantity})</span>
                                 </div>
                                 <div class="cart-item-price">
-                                    <span>Rs. ${item.price.toFixed(2)}</span>
+                                    <span>Rs. ${item.price}</span>
                                     <button class="cart-item-remove" title="Remove item">&times;</button>
                                 </div>
                             </div>
@@ -1572,10 +1709,21 @@
                         cartItemsContainer.innerHTML += itemHtml;
                     });
 
-                    cartTotalSummary.innerHTML = `Grand Total: <span>Rs. ${grandTotal.toFixed(2)}</span>`;
-                    proceedToCheckoutBtn.disabled = false;
-                    proceedToCheckoutBtn.style.opacity = '1';
-                    proceedToCheckoutBtn.style.cursor = 'pointer';
+                    cartTotalSummary.innerHTML = `Grand Total: <span>Rs. ${grandTotal}</span>`;
+                    
+                    // Min Order Value Check
+                    if (grandTotal < MIN_ORDER_VALUE) {
+                        proceedToCheckoutBtn.disabled = true;
+                        proceedToCheckoutBtn.innerText = `Add Rs. ${MIN_ORDER_VALUE - grandTotal} more to checkout`;
+                        minOrderWarning.classList.remove('hidden');
+                        minOrderWarning.innerText = `Minimum order value of Rs. ${MIN_ORDER_VALUE} required.`;
+                    } else {
+                        proceedToCheckoutBtn.disabled = false;
+                        proceedToCheckoutBtn.innerText = 'Proceed to Checkout \u2192';
+                        minOrderWarning.classList.add('hidden');
+                        proceedToCheckoutBtn.style.opacity = '1';
+                        proceedToCheckoutBtn.style.cursor = 'pointer';
+                    }
                 }
             }
 
@@ -1618,7 +1766,7 @@
                 let orderDetails = '';
                 let grandTotal = 0;
                 cart.forEach(item => {
-                    orderDetails += `${item.name} - ${item.quantity} - Rs. ${item.price.toFixed(2)}\n`;
+                    orderDetails += `${item.name} - ${item.quantity} - Rs. ${item.price}\n`;
                     grandTotal += item.price;
                 });
 
@@ -1628,7 +1776,7 @@
 
 📋 *ORDER DETAILS:*
 ${orderDetails}
-*Total Amount: Rs. ${grandTotal.toFixed(2)}*
+*Total Amount: Rs. ${grandTotal}*
 
 👤 *CUSTOMER DETAILS:*
 Name: ${name}
@@ -1644,8 +1792,7 @@ Here's my order and my details. Please proceed with the order.
                 `;
 
                 // 4. Encode message and create URL
-                // Replace PLACEHOLDER_NUMBER with actual WhatsApp Business number (format: 91XXXXXXXXXX)
-                const whatsappNumber = "919470383407"; // <-- IMPORTANT: Number updated!
+                const whatsappNumber = "919470383407"; 
                 const encodedMessage = encodeURIComponent(message.trim());
                 const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
@@ -1686,10 +1833,6 @@ Here's my order and my details. Please proceed with the order.
             scrollElements.forEach(el => {
                 elementObserver.observe(el);
             });
-
-            // Modal button listeners
-            /* MODAL LISTENERS REMOVED */
-
 
         }); // End DOMContentLoaded
     </script>
